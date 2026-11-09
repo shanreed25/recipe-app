@@ -1,6 +1,6 @@
 
 
-function RecipeDetails() {
+export function RecipeDetails() {
 
 
   return (
@@ -9,5 +9,3 @@ function RecipeDetails() {
     </>
   )
 }
-
-export default RecipeDetails

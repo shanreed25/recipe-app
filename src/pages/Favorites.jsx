@@ -1,6 +1,6 @@
 
 
-function Favorites() {
+export function Favorites() {
 
 
   return (
@@ -9,5 +9,3 @@ function Favorites() {
     </>
   )
 }
-
-export default Favorites

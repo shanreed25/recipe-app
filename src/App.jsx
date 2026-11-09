@@ -1,12 +1,25 @@
+import { Routes, Route} from 'react-router';
+import { RecipeApp } from './components/RecipeApp';
+import {Home} from './pages/Home'
+import {RecipeDetails} from './pages/RecipeDetails'
+import {Favorites} from './pages/Favorites'
+import {Category} from './pages/Category'
+
+
 
 
 function App() {
 
 
   return (
-    <>
-      <h1>Recipe App</h1>
-    </>
+    <Routes>
+      <Route element={<RecipeApp/>}>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/recipe-details' element={<RecipeDetails/>}/>
+        <Route path='/favorites' element={<Favorites/>}/>
+        <Route path='/category' element={<Category/>}/>
+      </Route>
+    </Routes>
   )
 }
 

@@ -1,13 +1,16 @@
+import { Outlet } from 'react-router';
+import {NavBar} from './NavBar';
+import { styles } from '../styles/styles';
 
-
-function RecipeApp() {
-
-
+export function RecipeApp() {
   return (
     <>
-      <h1>Recipe App </h1>
+      <NavBar />
+      <main className={styles.app}>
+        <Outlet />
+      </main>
     </>
-  )
+  );
 }
 
-export default RecipeApp
+

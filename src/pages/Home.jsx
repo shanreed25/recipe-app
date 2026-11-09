@@ -1,6 +1,6 @@
 
 
-function Home() {
+export function Home() {
 
 
   return (
@@ -10,4 +10,3 @@ function Home() {
   )
 }
 
-export default Home

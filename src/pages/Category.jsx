@@ -1,6 +1,6 @@
 
 
-function Category() {
+export function Category() {
 
 
   return (
@@ -10,4 +10,3 @@ function Category() {
   )
 }
 
-export default Category
