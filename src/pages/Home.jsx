@@ -10,6 +10,9 @@ export function Home() {
       const res = await fetch("https://www.themealdb.com/api/json/v1/1/categories.php");
       const categoriesData = await res.json();//returns a object categories that is an array of 14 items: {categories: Array(14)}
       console.log(categoriesData);
+      const categoriesList = categoriesData.categories
+      console.log(categoriesList);
+      setCategories(categoriesList)
     }
 
     getCategories();
@@ -24,7 +27,9 @@ export function Home() {
       <div>
         <h2>Recipe Categories</h2>
         <ul>
-
+          {categories.map((category) => (
+            <li key={category.idCategory}>{category.strCategory}</li>
+          ))}
         </ul>
       </div>
     </>
