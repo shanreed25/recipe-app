@@ -4,4 +4,8 @@ export const styles = {
     headerNav: "w-full max-w-xl px-4 flex justify-around",
     navLink: "hover:text-amber-300",
     navLinkActive: "text-amber-300",
+    contentContainer: "flex flex-col gap-15 text-center",
+    h2: "text-6xl text-[#431853] font-bold",
+    cardContainer: "max-w-6xl list-none p-0 flex flex-wrap justify-center gap-5",
+    card: "block text-center no-underline text-[#431853] border border-[#431853] rounded-lg p-4 hover:shadow-md transition-shadow",
 }

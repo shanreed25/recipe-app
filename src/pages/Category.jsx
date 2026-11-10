@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router"
+import { Card } from "../components/Card";
+import { styles } from "../styles/styles";
 
 
 export function Category() {
@@ -25,14 +27,19 @@ export function Category() {
 
   return (
     <>
-      <h2>{categoryName}</h2>
-      <ul>
+    <div className={styles.contentContainer}>
+      <h2 className={styles.h2}>{categoryName}</h2>
+      <ul className={styles.cardContainer}>
           {meals.map((meal) => (
-            <li key={meal.idMeal} >
-              <Link>{meal.strMeal}</Link>
-            </li>
+            <Card 
+            key={meal.idMeal}
+            to={`/meal/${meal.strMeal}`}
+            name={meal.strMeal}
+            image={meal.strMealThumb}
+            />
           ))}
         </ul>
+    </div>
     </>
   )
 }
