@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { styles } from "../styles/styles";
 import { Card } from "../components/Card";
+import { RecipeCard } from "../components/RecipeCard";
 
 export function RecipeDetails() {
   const { recipeId } = useParams();
@@ -17,7 +18,7 @@ export function RecipeDetails() {
       const recipeData = await res.json(); //returns a object meals that is an array of 1 meal item: {meals: Array(1)}
       const mealList = recipeData.meals; //returns an array of one object [{...}]
       const [recipeObj] = mealList; //destructure to get object
-      // console.log(recipeObj);
+      console.log(recipeObj);
       setRecipe(recipeObj);
     }
 
@@ -42,28 +43,27 @@ export function RecipeDetails() {
       const ingredientName = recipe[`strIngredient${i}`];
       const ingredientMeasure = recipe[`strMeasure${i}`];
 
-      const ingredientInfo = {name: ingredientName, measure: ingredientMeasure}
+      const ingredientInfo = {
+        name: ingredientName,
+        measure: ingredientMeasure,
+      };
       //NEXT:>>>some ingrdients are empty string so check for those and do not add them to the list
-      ingredients.push(ingredientInfo)
-      console.log(ingredients);
-
+      ingredients.push(ingredientInfo);
+      // console.log(ingredients);
     }
-    return ingredients
+    return ingredients;
   }
 
-  const ingredients = getIngredients()
+  const ingredients = getIngredients();
 
   return (
     <>
       <div className={styles.contentContainer}>
-        <div className={styles.recipeCard}>
-          <h2 className={styles.h2}>{recipe.strMeal}</h2>
-          {ingredients.map((item, index) => (
-            <li key={index}>
-              {item.measure} {item.name}
-            </li>
-          ))}
-        </div>
+        <RecipeCard
+          name={recipe.strMeal}
+          image={recipe.strMealThumb}
+          ingredients={ingredients}
+        />
       </div>
     </>
   );
