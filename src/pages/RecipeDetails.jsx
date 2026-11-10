@@ -1,11 +1,69 @@
-
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { styles } from "../styles/styles";
+import { Card } from "../components/Card";
 
 export function RecipeDetails() {
+  const { recipeId } = useParams();
+  const [recipe, setRecipe] = useState([]);
 
+  useEffect(() => {
+    const controller = new AbortController();
+    async function getRecipe() {
+      const res = await fetch(
+        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`,
+      );
+
+      const recipeData = await res.json(); //returns a object meals that is an array of 1 meal item: {meals: Array(1)}
+      const mealList = recipeData.meals; //returns an array of one object [{...}]
+      const [recipeObj] = mealList; //destructure to get object
+      // console.log(recipeObj);
+      setRecipe(recipeObj);
+    }
+
+    getRecipe();
+
+    return () => controller.abort();
+  }, []);
+
+  function getIngredients() {
+    const ingredients = [];
+
+    //all recipes have 20 ingredients
+    //strat at 1 and stop at 20
+    for (let i = 1; i <= 20; i++) {
+      /* get the ingredient and the measurement that goes with it
+         they both share the same number like strIngredient5 goes with
+         strMeasure5
+         each time th loop runs it runs with a different number
+         strIngredient${1} and strMeasure${1} then continue to 
+         strIngredient${20} and strMeasure${20} getting
+      */
+      const ingredientName = recipe[`strIngredient${i}`];
+      const ingredientMeasure = recipe[`strMeasure${i}`];
+
+      const ingredientInfo = {name: ingredientName, measure: ingredientMeasure}
+      ingredients.push(ingredientInfo)
+      console.log(ingredients);
+
+    }
+    return ingredients
+  }
+
+  const ingredients = getIngredients()
 
   return (
     <>
-      <h1>Recipe Details Page</h1>
+      <div className={styles.contentContainer}>
+        <div className={styles.recipeCard}>
+          <h2 className={styles.h2}>{recipe.strMeal}</h2>
+          {ingredients.map((item, index) => (
+            <li key={index}>
+              {item.measure} {item.name}
+            </li>
+          ))}
+        </div>
+      </div>
     </>
-  )
+  );
 }

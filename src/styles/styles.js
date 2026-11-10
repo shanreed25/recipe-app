@@ -8,4 +8,5 @@ export const styles = {
     h2: "text-6xl text-[#431853] font-bold",
     cardContainer: "max-w-6xl list-none p-0 flex flex-wrap justify-center gap-5",
     card: "block text-center no-underline text-[#431853] border border-[#431853] rounded-lg p-4 hover:shadow-md transition-shadow",
+    recipeCard: "text-[#431853] border border-[#431853] rounded-lg p-4",
 }
