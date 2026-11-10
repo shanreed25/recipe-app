@@ -43,6 +43,7 @@ export function RecipeDetails() {
       const ingredientMeasure = recipe[`strMeasure${i}`];
 
       const ingredientInfo = {name: ingredientName, measure: ingredientMeasure}
+      //NEXT:>>>some ingrdients are empty string so check for those and do not add them to the list
       ingredients.push(ingredientInfo)
       console.log(ingredients);
 
