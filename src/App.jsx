@@ -15,9 +15,10 @@ function App() {
     <Routes>
       <Route element={<RecipeApp/>}>
         <Route path='/' element={<Home/>}/>
+        <Route path='/category/:categoryName' element={<Category/>}/>
         <Route path='/recipe-details' element={<RecipeDetails/>}/>
         <Route path='/favorites' element={<Favorites/>}/>
-        <Route path='/category' element={<Category/>}/>
+        
       </Route>
     </Routes>
   )

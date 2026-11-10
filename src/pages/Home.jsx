@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 
 
 export function Home() {
@@ -9,9 +10,9 @@ export function Home() {
     async function getCategories(){
       const res = await fetch("https://www.themealdb.com/api/json/v1/1/categories.php");
       const categoriesData = await res.json();//returns a object categories that is an array of 14 items: {categories: Array(14)}
-      console.log(categoriesData);
+      // console.log(categoriesData);
       const categoriesList = categoriesData.categories
-      console.log(categoriesList);
+      // console.log(categoriesList);
       setCategories(categoriesList)
     }
 
@@ -28,7 +29,9 @@ export function Home() {
         <h2>Recipe Categories</h2>
         <ul>
           {categories.map((category) => (
-            <li key={category.idCategory}>{category.strCategory}</li>
+            <li key={category.idCategory}>
+              <Link to={`/category/${category.strCategory}`}>{category.strCategory}</Link>
+              </li>
           ))}
         </ul>
       </div>

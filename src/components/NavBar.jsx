@@ -11,9 +11,10 @@ export function NavBar() {
       <header className={styles.header}>
         <nav className={styles.headerNav}>
           <NavLink to="/" className={navItemClass}>Home</NavLink>
-          <NavLink to="/recipe-details" className={navItemClass}>Blog</NavLink>
-          <NavLink to="/favorites" className={navItemClass}>Favorites</NavLink>
-          <NavLink to="/category" className={navItemClass}>Category</NavLink>
+          {/* <NavLink to='/category/:categoryName' className={navItemClass}>Category</NavLink> */}
+          {/* <NavLink to="/recipe-details" className={navItemClass}>Recipe Details</NavLink> */}
+          {/* <NavLink to="/favorites" className={navItemClass}>Favorites</NavLink> */}
+          
         </nav>
       </header>
   )
