@@ -63,6 +63,7 @@ export function RecipeDetails() {
           name={recipe.strMeal}
           image={recipe.strMealThumb}
           ingredients={ingredients}
+          instructions={recipe.strInstructions}
         />
       </div>
     </>
