@@ -14,7 +14,7 @@ export function SearchBar() {
             return
         }
 
-        navigate(`/search`)
+        navigate(`/search?query=${searchTerm.trim()}`)
 
         setSearchTerm("")
 

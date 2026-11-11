@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router"
 
 export function SearchResults(){
     const [searchParams] = useSearchParams()
-
+    console.log(searchParams.get("query"));
 
     return(
         <>
