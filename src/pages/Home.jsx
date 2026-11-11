@@ -6,6 +6,7 @@ import { styles } from "../styles/styles";
 export function Home() {
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const controller = new AbortController(); //built-in browser tool for canceling a fetch request that is still in progress
@@ -31,6 +32,10 @@ export function Home() {
         if (err.name !== "AbortError") {
           setError(err.message);
         }
+      } finally {
+        if(!controller.signal.aborted){
+          setLoading(false)
+        }
       }
     }
 
@@ -43,6 +48,12 @@ export function Home() {
   if (error) {
     return (
     <p>There was an error: {error}</p>
+    )
+  }
+
+   if (loading) {
+    return (
+    <p>Loading......</p>
     )
   }
 

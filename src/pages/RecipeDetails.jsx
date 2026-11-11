@@ -8,6 +8,7 @@ export function RecipeDetails() {
   const { recipeId } = useParams();
   const [recipe, setRecipe] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -17,7 +18,7 @@ export function RecipeDetails() {
       try {
         const res = await fetch(
           `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`,
-          { signal: controller.signal }
+          { signal: controller.signal },
         );
 
         if (!res.ok) {
@@ -32,6 +33,10 @@ export function RecipeDetails() {
       } catch (err) {
         if (err.name !== "AbortError") {
           setError(err.message);
+        }
+      } finally {
+        if (!controller.signal.aborted) {
+          setLoading(false);
         }
       }
     }
@@ -70,10 +75,12 @@ export function RecipeDetails() {
 
   const ingredients = getIngredients();
 
-    if (error) {
-      return (
-      <p>There was an error: {error}</p>
-      )
+  if (error) {
+    return <p>There was an error: {error}</p>;
+  }
+
+  if (loading) {
+    return <p>Loading......</p>;
   }
 
   return (

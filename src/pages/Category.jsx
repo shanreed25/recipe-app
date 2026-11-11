@@ -7,6 +7,7 @@ export function Category() {
   const { categoryName } = useParams();
   const [meals, setMeals] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const controller = new AbortController();
@@ -24,11 +25,15 @@ export function Category() {
 
         const categoryData = await res.json(); //returns a object meals that is an array of 81 items: {meals: Array(81)}
         const categoryMealsList = categoryData.meals;
-        console.log(categoryMealsList);
+        // console.log(categoryMealsList);
         setMeals(categoryMealsList);
       } catch (err) {
         if (err.name !== "AbortError") {
           setError(err.message);
+        }
+      }finally {
+        if(!controller.signal.aborted){
+          setLoading(false)
         }
       }
     }
@@ -42,6 +47,12 @@ export function Category() {
       return (
       <p>There was an error: {error}</p>
       )
+  }
+
+     if (loading) {
+    return (
+    <p>Loading......</p>
+    )
   }
 
   return (

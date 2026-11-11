@@ -24,8 +24,8 @@ Your application must include the following pages and routing logic:
 - [ ] Displays a list of all recipes that the user has marked as a favorite.
 - [ ] If the user has no favorites, this page should display a message prompting them to browse and add some.
 ### Search Functionality:
-- [ ] A search bar, likely in a shared Navbar, that allows users to search for recipes by name.
-- [ ] Submitting a search should navigate the user to a search results page (e.g., /search?query=Arrabiata). This page will display the results of the search query.
+- [X] A search bar, likely in a shared Navbar, that allows users to search for recipes by name.
+- [X] Submitting a search should navigate the user to a search results page (e.g., /search?query=Arrabiata). This page will display the results of the search query.
 
 ## Global State with Context API
 - [ ] Create a FavoritesContext to manage the user’s list of favorite recipes globally.
@@ -37,5 +37,5 @@ Your application must include the following pages and routing logic:
 - [ ] This context should use your useLocalStorage hook internally to persist the favorites list across browser sessions.
 
 ## Components & UI
-- [ ] Create reusable, well-styled components (e.g., RecipeCard, Navbar, Spinner, ErrorMessage).
+- [X] Create reusable, well-styled components (e.g., RecipeCard, Navbar, Spinner, ErrorMessage).
 - [ ] The application should be visually appealing and responsive. Use of a CSS framework, CSS-in-JS, or CSS Modules is up to you.

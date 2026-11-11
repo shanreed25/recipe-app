@@ -7,6 +7,7 @@ export function SearchResults() {
   const searchTerm = searchParams.get("query");
   const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
   //   console.log(searchParams.get("query"));
 
   useEffect(() => {
@@ -29,6 +30,10 @@ export function SearchResults() {
         if (err.name !== "AbortError") {
           setError(err.message);
         }
+      } finally {
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
       }
     }
 
@@ -39,6 +44,10 @@ export function SearchResults() {
 
   if (error) {
     return <p>There was an error: {error}</p>;
+  }
+
+  if (loading) {
+    return <p>Loading......</p>;
   }
 
   return (
