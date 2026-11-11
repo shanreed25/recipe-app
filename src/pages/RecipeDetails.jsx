@@ -70,6 +70,12 @@ export function RecipeDetails() {
 
   const ingredients = getIngredients();
 
+    if (error) {
+      return (
+      <p>There was an error: {error}</p>
+      )
+  }
+
   return (
     <>
       <div className={styles.contentContainer}>

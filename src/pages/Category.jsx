@@ -38,6 +38,12 @@ export function Category() {
     return () => controller.abort();
   }, []);
 
+    if (error) {
+      return (
+      <p>There was an error: {error}</p>
+      )
+  }
+
   return (
     <>
       <div className={styles.contentContainer}>

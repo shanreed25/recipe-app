@@ -39,6 +39,13 @@ export function Home() {
     return () => controller.abort(); //clean up
   }, []);
 
+
+  if (error) {
+    return (
+    <p>There was an error: {error}</p>
+    )
+  }
+
   return (
     <>
       <div className={styles.contentContainer}>
