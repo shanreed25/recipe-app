@@ -7,19 +7,33 @@ import { RecipeCard } from "../components/RecipeCard";
 export function RecipeDetails() {
   const { recipeId } = useParams();
   const [recipe, setRecipe] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const controller = new AbortController();
-    async function getRecipe() {
-      const res = await fetch(
-        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`,
-      );
+    setError(null);
 
-      const recipeData = await res.json(); //returns a object meals that is an array of 1 meal item: {meals: Array(1)}
-      const mealList = recipeData.meals; //returns an array of one object [{...}]
-      const [recipeObj] = mealList; //destructure to get object
-      console.log(recipeObj);
-      setRecipe(recipeObj);
+    async function getRecipe() {
+      try {
+        const res = await fetch(
+          `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`,
+          { signal: controller.signal }
+        );
+
+        if (!res.ok) {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+
+        const recipeData = await res.json(); //returns a object meals that is an array of 1 meal item: {meals: Array(1)}
+        const mealList = recipeData.meals; //returns an array of one object [{...}]
+        const [recipeObj] = mealList; //destructure to get object
+        console.log(recipeObj);
+        setRecipe(recipeObj);
+      } catch (err) {
+        if (err.name !== "AbortError") {
+          setError(err.message);
+        }
+      }
     }
 
     getRecipe();
