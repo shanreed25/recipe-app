@@ -4,6 +4,7 @@ import {Home} from './pages/Home'
 import {RecipeDetails} from './pages/RecipeDetails'
 import {Favorites} from './pages/Favorites'
 import {Category} from './pages/Category'
+import { SearchResults } from './pages/SearchResults';
 
 
 
@@ -18,6 +19,7 @@ function App() {
         <Route path='/category/:categoryName' element={<Category/>}/>
         <Route path='/recipe-details/:recipeId' element={<RecipeDetails/>}/>
         <Route path='/favorites' element={<Favorites/>}/>
+        <Route path='/search' element={<SearchResults />}/>
         
       </Route>
     </Routes>
