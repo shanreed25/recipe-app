@@ -39,3 +39,10 @@ Your application must include the following pages and routing logic:
 ## Components & UI
 - [X] Create reusable, well-styled components (e.g., RecipeCard, Navbar, Spinner, ErrorMessage).
 - [X] The application should be visually appealing and responsive. Use of a CSS framework, CSS-in-JS, or CSS Modules is up to you.
+
+
+## Reflection
+
+### Design decision: the useFetch hook
+
+> The Home, Category, Recipe Details, Search Results and Favorites pages all had its own `useState` and `useEffect` code for fetching data, tracking loading tracking and error handling. They all were about 30 lines of almost the same code. I moved all that logic into a custom hook `useFetch` which help me find some errors I also repeated in the files. The fetch code now lives in one place and now any fixes I needed to do I can do in one place instead of 4 different places. Doing this help me see some other pieces of code that could be implemented better. The favorites page still has its own fetch logic because the hook would need to be called inside a loop and that does not work. 

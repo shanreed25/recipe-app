@@ -33,7 +33,7 @@ export function SearchResults() {
           {recipes.map((recipe) => (
             <Card
               key={recipe.idMeal}
-              to={`/recipe-details/${recipe.idMeal}`}
+              to={`/recipe/${recipe.idMeal}`}
               name={recipe.strMeal}
               image={recipe.strMealThumb}
             />

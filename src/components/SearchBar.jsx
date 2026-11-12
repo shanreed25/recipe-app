@@ -5,7 +5,7 @@ export function SearchBar() {
     const [searchTerm, setSearchTerm] = useState("")
     const navigate = useNavigate()
 
-    console.log(searchTerm);
+    // console.log(searchTerm);
 
     function handleSubmit(e){
         e.preventDefault();

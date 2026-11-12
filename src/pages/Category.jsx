@@ -26,20 +26,18 @@ export function Category() {
 
 
   return (
-    <>
       <div className={styles.contentContainer}>
         <h2 className={styles.h2}>{categoryName}</h2>
         <ul className={styles.cardContainer}>
           {recipes.map((recipe) => (
             <Card
               key={recipe.idMeal}
-              to={`/recipe-details/${recipe.idMeal}`}
+              to={`/recipe/${recipe.idMeal}`}
               name={recipe.strMeal}
               image={recipe.strMealThumb}
             />
           ))}
         </ul>
       </div>
-    </>
   );
 }
