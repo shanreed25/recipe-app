@@ -1,46 +1,17 @@
-import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router";
+import { useSearchParams } from "react-router";
 import { Card } from "../components/Card";
+import { useFetch } from "../hooks/useFetch";
 
 export function SearchResults() {
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get("query");
-  const [recipes, setRecipes] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
   //   console.log(searchParams.get("query"));
 
-  useEffect(() => {
-    const controller = new AbortController();
-    setError(null);
+  const url = searchTerm
+    ? `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`
+    : null;
 
-    async function getRecipe() {
-      try {
-        const res = await fetch(
-          `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`,
-        );
-
-        if (!res.ok) {
-          throw new Error(`Request failed with status ${response.status}`);
-        }
-
-        const recipeData = await res.json();
-        setRecipes(recipeData.meals ?? []); //if is recipeData.meals null use []
-      } catch (err) {
-        if (err.name !== "AbortError") {
-          setError(err.message);
-        }
-      } finally {
-        if (!controller.signal.aborted) {
-          setLoading(false);
-        }
-      }
-    }
-
-    getRecipe();
-
-    return () => controller.abort(); //clean up
-  }, []);
+  const { recipesData, loading, error } = useFetch(url);
 
   if (error) {
     return <p>There was an error: {error}</p>;
@@ -49,6 +20,8 @@ export function SearchResults() {
   if (loading) {
     return <p>Loading......</p>;
   }
+
+  const recipes = recipesData?.meals ?? [];
 
   return (
     <>

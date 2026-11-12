@@ -34,7 +34,7 @@ export function SearchBar() {
         onChange={e => setSearchTerm(e.target.value)}
         className="rounded-md border border-[#ca77eb] px-3 py-2"
       />
-      <button type="submit" className="rounded-md">
+      <button type="submit" className="rounded-md ml-10 bg-[#f3e8fa] text-[#431853] border border-[#ca77eb] px-3 hover:bg-[#ca77eb]">
         Search
       </button>
     </form>

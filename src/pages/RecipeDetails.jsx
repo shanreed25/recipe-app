@@ -1,54 +1,11 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { styles } from "../styles/styles";
-import { Card } from "../components/Card";
 import { RecipeCard } from "../components/RecipeCard";
 import { useFavorites } from "../context/FavoritesContext";
+import { useFetch } from "../hooks/useFetch";
 
-export function RecipeDetails() {
-  const { recipeId } = useParams();
-  const [recipe, setRecipe] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const {addFavorite, isFavorited, removeFavorite} = useFavorites()
 
-  useEffect(() => {
-    const controller = new AbortController();
-    setError(null);
-
-    async function getRecipe() {
-      try {
-        const res = await fetch(
-          `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`,
-          { signal: controller.signal },
-        );
-
-        if (!res.ok) {
-          throw new Error(`Request failed with status ${response.status}`);
-        }
-
-        const recipeData = await res.json(); //returns a object meals that is an array of 1 meal item: {meals: Array(1)}
-        const mealList = recipeData.meals; //returns an array of one object [{...}]
-        const [recipeObj] = mealList; //destructure to get object
-        console.log(recipeObj);
-        setRecipe(recipeObj);
-      } catch (err) {
-        if (err.name !== "AbortError") {
-          setError(err.message);
-        }
-      } finally {
-        if (!controller.signal.aborted) {
-          setLoading(false);
-        }
-      }
-    }
-
-    getRecipe();
-
-    return () => controller.abort();
-  }, []);
-
-  function getIngredients() {
+function getIngredients(recipe) {
     const ingredients = [];
 
     //all recipes have 20 ingredients
@@ -75,17 +32,13 @@ export function RecipeDetails() {
     return ingredients;
   }
 
-  const favorite = isFavorited(recipeId) 
 
-  function handleFavorite(){
-    if(favorite){
-      removeFavorite(recipe.idMeal)
-    } else{
-    addFavorite(recipe.idMeal)
-    }
-  }
-
-  const ingredients = getIngredients();
+export function RecipeDetails() {
+  const { recipeId } = useParams();
+  const { addFavorite, isFavorited, removeFavorite } = useFavorites();
+  const { recipesData, loading, error } = useFetch(
+    `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`
+  );
 
   if (error) {
     return <p>There was an error: {error}</p>;
@@ -95,6 +48,23 @@ export function RecipeDetails() {
     return <p>Loading......</p>;
   }
 
+  const recipe = recipesData?.meals?.[0]; 
+
+
+  if (!recipe) {
+    return <p>Recipe not found.</p>;
+  }
+
+  const favorite = isFavorited(recipe.idMeal);
+
+  function handleFavorite() {
+    if (favorite) {
+      removeFavorite(recipe.idMeal);
+    } else {
+      addFavorite(recipe.idMeal);
+    }
+  }
+
   return (
     <>
       <div className={styles.contentContainer}>
@@ -102,7 +72,7 @@ export function RecipeDetails() {
           isFavorited={favorite}
           name={recipe.strMeal}
           image={recipe.strMealThumb}
-          ingredients={ingredients}
+          ingredients={getIngredients(recipe)}
           instructions={recipe.strInstructions}
           handleFavorite={handleFavorite}
         />

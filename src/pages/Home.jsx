@@ -1,5 +1,5 @@
 import { Card } from "../components/Card";
-import { useFetch } from "../hooks/useFetchHook";
+import { useFetch } from "../hooks/useFetch";
 import { styles } from "../styles/styles";
 
 export function Home() {

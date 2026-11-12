@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Card } from "../components/Card";
 import { styles } from "../styles/styles";
-import { useFetch } from "../hooks/useFetchHook";
+import { useFetch } from "../hooks/useFetch";
 
 export function Category() {
   const { categoryName } = useParams();
