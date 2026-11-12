@@ -19,7 +19,7 @@ Your application must include the following pages and routing logic:
 - [X] Each recipe shown should be a link to its detailed recipe page.
 ### Recipe Detail Page (/recipe/[recipeId]):
 - [X] A dynamic route that fetches and displays the full details for a single recipe (image, ingredients, instructions, etc.).
-- [ ] This page must include a button to “Add to Favorites” or “Remove from Favorites”. The button’s state and action should be handled by your FavoritesContext.
+- [X] This page must include a button to “Add to Favorites” or “Remove from Favorites”. The button’s state and action should be handled by your FavoritesContext.
 ### Favorites Page (/favorites):
 - [X] Displays a list of all recipes that the user has marked as a favorite.
 - [X] If the user has no favorites, this page should display a message prompting them to browse and add some.
@@ -32,10 +32,10 @@ Your application must include the following pages and routing logic:
 - [ ] The context must provide:
     - [X] A list of favorite recipe IDs.
     - [X] A function to add a recipe to favorites.
-    - [ ] A function to remove a recipe from favorites.
-    - [ ] A function to check if a recipe is already in favorites.
+    - [X] A function to remove a recipe from favorites.
+    - [X] A function to check if a recipe is already in favorites.
 - [X] This context should use your useLocalStorage hook internally to persist the favorites list across browser sessions.
 
 ## Components & UI
 - [X] Create reusable, well-styled components (e.g., RecipeCard, Navbar, Spinner, ErrorMessage).
-- [ ] The application should be visually appealing and responsive. Use of a CSS framework, CSS-in-JS, or CSS Modules is up to you.
+- [X] The application should be visually appealing and responsive. Use of a CSS framework, CSS-in-JS, or CSS Modules is up to you.

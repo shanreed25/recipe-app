@@ -10,7 +10,7 @@ export function RecipeDetails() {
   const [recipe, setRecipe] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const {addFavorite} = useFavorites()
+  const {addFavorite, isFavorited, removeFavorite} = useFavorites()
 
   useEffect(() => {
     const controller = new AbortController();
@@ -75,8 +75,14 @@ export function RecipeDetails() {
     return ingredients;
   }
 
+  const favorite = isFavorited(recipeId) 
+
   function handleFavorite(){
+    if(favorite){
+      removeFavorite(recipe.idMeal)
+    } else{
     addFavorite(recipe.idMeal)
+    }
   }
 
   const ingredients = getIngredients();
@@ -93,6 +99,7 @@ export function RecipeDetails() {
     <>
       <div className={styles.contentContainer}>
         <RecipeCard
+          isFavorited={favorite}
           name={recipe.strMeal}
           image={recipe.strMealThumb}
           ingredients={ingredients}

@@ -10,7 +10,15 @@ export function FavoritesProvider({ children }) {
     setFavorites((prev) => (prev.includes(recipeId) ? prev : [...prev, recipeId]));
   }
 
-  const value = { favorites, addFavorite };
+  function isFavorited(id){
+    return favorites.includes(id)
+  }
+
+  function removeFavorite(recipeId) {
+    setFavorites((prev) => prev.filter((favoriteId) => favoriteId !== recipeId));
+  }
+
+  const value = { favorites, addFavorite, isFavorited, removeFavorite };
 
   return (
     <FavoritesContext.Provider value={value}>

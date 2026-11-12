@@ -55,7 +55,7 @@ export function Favorites() {
     getFavorites();
 
     return () => controller.abort();
-  }, []);
+  }, [favorites]);
 
     if (error) {
     return <p>There was an error: {error}</p>;
