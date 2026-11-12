@@ -65,8 +65,8 @@ export function Favorites() {
     return <p>Loading......</p>;
   }
 
-  if (favorites.length === 0){
-    <p>No Favorites Added</p>
+  if (recipes.length === 0){
+    return <p>No Favorites Added Yet....Browse and add some</p>
   }
 
   return (
