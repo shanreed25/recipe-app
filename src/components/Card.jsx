@@ -3,9 +3,9 @@ import { styles } from "../styles/styles";
 
 export function Card({ to, name, image }) {
   return (
-    <li className="list-none">
+    <li className="list-none w-full max-w-100">
       <Link to={to} className={styles.card}>
-        <img src={image} alt={name}  width={400} />
+        <img src={image} alt={name}  className="w-full" />
         <h3 className="mt-2 font-extrabold">{name}</h3>
       </Link>
     </li>
