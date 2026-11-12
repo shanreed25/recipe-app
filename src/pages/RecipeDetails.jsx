@@ -3,12 +3,14 @@ import { useParams } from "react-router";
 import { styles } from "../styles/styles";
 import { Card } from "../components/Card";
 import { RecipeCard } from "../components/RecipeCard";
+import { useFavorites } from "../context/FavoritesContext";
 
 export function RecipeDetails() {
   const { recipeId } = useParams();
   const [recipe, setRecipe] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const {addFavorite} = useFavorites()
 
   useEffect(() => {
     const controller = new AbortController();
@@ -71,6 +73,10 @@ export function RecipeDetails() {
       // console.log(ingredients);
     }
     return ingredients;
+  }
+
+  function handleFavorite(){
+    
   }
 
   const ingredients = getIngredients();
