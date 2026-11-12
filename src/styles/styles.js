@@ -9,7 +9,7 @@ export const styles = {
     cardContainer: "max-w-6xl list-none p-0 flex flex-wrap justify-center gap-5",
     cardBorder: "border border-[#431853] rounded-xl shadow-md",
     card: "block list-none text-center no-underline text-[#431853] border border-[#431853] rounded-lg p-4 hover:shadow-md transition-shadow",
-    recipeCard: "max-w-7xl mx-auto overflow-hidden bg-white text-[#431853] border border-[#431853] rounded-xl shadow-md",
+    recipeCard: "max-w-7xl mx-auto pt-20 bg-white text-[#431853] border border-[#431853] rounded-xl shadow-md",
     cardsH3: "text-xl font-semibold mb-3 border-b border-[#f3e8fa] pb-2",
-    favoritesButton: "bg-[#f3e8fa] text-[#431853] font-semibold px-4 py-2 rounded-md border border-[#431853] absolute bottom-4 center-4  shadow-md hover:bg-[#431853] hover:text-white transition-colors"
+    favoritesButton: "bg-[#f3e8fa] text-[#431853] font-semibold px-4 py-2 rounded-md border border-[#431853] absolute bottom-4 shadow-md hover:bg-[#431853] hover:text-white"
 }

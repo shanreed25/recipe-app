@@ -7,7 +7,7 @@ export function useFetch(url) {
 
   useEffect(() => {
     if (!url) {
-      setData(null);
+      setRecipesData(null);
       setLoading(false);
       return;
     }

@@ -21,14 +21,12 @@ function getIngredients(recipe) {
       const ingredientName = recipe[`strIngredient${i}`];
       const ingredientMeasure = recipe[`strMeasure${i}`];
 
-      const ingredientInfo = {
-        name: ingredientName,
-        measure: ingredientMeasure,
-      };
-      //NEXT:>>>some ingrdients are empty string so check for those and do not add them to the list
-      ingredients.push(ingredientInfo);
-      // console.log(ingredients);
+      // Some ingredient items are empty string or null
+      if (ingredientName && ingredientName.trim()) {
+        ingredients.push({ name: ingredientName, measure: ingredientMeasure });
+      }
     }
+
     return ingredients;
   }
 

@@ -29,7 +29,7 @@ Your application must include the following pages and routing logic:
 
 ## Global State with Context API
 - [X] Create a FavoritesContext to manage the user’s list of favorite recipes globally.
-- [ ] The context must provide:
+- [X] The context must provide:
     - [X] A list of favorite recipe IDs.
     - [X] A function to add a recipe to favorites.
     - [X] A function to remove a recipe from favorites.

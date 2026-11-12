@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router";
 import { Card } from "../components/Card";
 import { useFetch } from "../hooks/useFetch";
+import { styles } from "../styles/styles";
 
 export function SearchResults() {
   const [searchParams] = useSearchParams();
@@ -24,12 +25,12 @@ export function SearchResults() {
   const recipes = recipesData?.meals ?? [];
 
   return (
-    <>
-      <h2>Search Results for {searchTerm}</h2>
+    <div className={styles.contentContainer}>
+      <h2 className={styles.h2}>Search Results for {searchTerm}</h2>
       {recipes.length === 0 ? (
         <p>No results found for {searchTerm}</p>
       ) : (
-        <ul>
+        <ul className={styles.cardContainer}>
           {recipes.map((recipe) => (
             <Card
               key={recipe.idMeal}
@@ -40,6 +41,6 @@ export function SearchResults() {
           ))}
         </ul>
       )}
-    </>
+    </div>
   );
 }
