@@ -76,7 +76,7 @@ export function RecipeDetails() {
   }
 
   function handleFavorite(){
-    
+    addFavorite(recipe.idMeal)
   }
 
   const ingredients = getIngredients();
@@ -97,6 +97,7 @@ export function RecipeDetails() {
           image={recipe.strMealThumb}
           ingredients={ingredients}
           instructions={recipe.strInstructions}
+          handleFavorite={handleFavorite}
         />
       </div>
     </>

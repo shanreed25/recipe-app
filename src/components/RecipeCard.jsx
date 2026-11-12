@@ -1,6 +1,6 @@
 import { styles } from "../styles/styles";
 
-export function RecipeCard({name, image, ingredients, instructions}){
+export function RecipeCard({name, image, ingredients, instructions, handleFavorite}){
     return(
 <article  className={styles.recipeCard}>
     {/* Image with the button layered on top */}
@@ -13,6 +13,7 @@ export function RecipeCard({name, image, ingredients, instructions}){
         <button
             type="button"
             className={styles.favoritesButton}
+            onClick={handleFavorite}
         >
         Add To Favorites
         </button>
