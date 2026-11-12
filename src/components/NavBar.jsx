@@ -12,7 +12,7 @@ export function NavBar() {
         <NavLink to="/" className={navItemClass}>
           Home
         </NavLink>
-        {/* <NavLink to="/favorites" className={navItemClass}>Favorites</NavLink> */}
+        <NavLink to="/favorites" className={navItemClass}>Favorites</NavLink>
         <SearchBar />
       </nav>
     </header>
