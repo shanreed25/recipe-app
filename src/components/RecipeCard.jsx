@@ -1,22 +1,51 @@
+import { styles } from "../styles/styles";
+
 export function RecipeCard({name, image, ingredients, instructions}){
     return(
-        <article className="flex flex-col  text-[#431853] bg-white max-w-6xl mx-auto border border-[#431853] rounded-lg ">
-            <h2>{name}</h2>
-            <img src={image} width={400} height={400}/>
-            <div className="flex ">
-                <div>
-                    <h3>Ingredients</h3>
-                    <div className="">
-                        {ingredients.map((ingredient, index) => (
-                        <p key={index}>
-                            {ingredient.measure} {ingredient.name}
-                        </p>
-                    ))}
-                    </div>
-                </div>
-                <p>{instructions}</p>
-            </div>
+<article  className={styles.recipeCard}>
+    {/* Image with the button layered on top */}
+    <div className="relative flex justify-center">
+        <img
+            src={image}
+            alt={name}
+            className="w-100 text-center rounded-md"
+        />
+        <button
+            type="button"
+            className={styles.favoritesButton}
+        >
+        Add To Favorites
+        </button>
+    </div>
 
-        </article>
+    {/* <div className="p-8 flex flex-col gap-6"> */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 p-20">
+        {/* <h2 className="text-3xl font-bold">{name}</h2> */}
+
+        <section className={styles.cardBorder}>
+            <h3 className={styles.cardsH3}>
+                Ingredients
+            </h3>
+            <ul className="p-8 flex flex-col gap-6">
+                {ingredients.map((ingredient, index) => (
+                    <li
+                        key={index}
+                        className="bg-[#f3e8fa] rounded-md px-3 py-2"
+                    >
+                        <span className="font-semibold">{ingredient.measure}</span>{" "}
+                        {ingredient.name}
+                    </li>
+                ))}
+            </ul>
+        </section>
+
+        <section className={styles.cardBorder}>
+            <h3 className={styles.cardsH3}>
+                Instructions
+            </h3>
+            <p className="">{instructions}</p>
+        </section>
+    </div>
+</article>
     )
 }
